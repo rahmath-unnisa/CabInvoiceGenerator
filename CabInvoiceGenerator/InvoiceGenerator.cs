@@ -11,6 +11,7 @@ namespace CabInvoiceGenerator
         const int MIN_FAIR = 5;
         const int FAIR_PER_KM = 10;
         const int FAIR_PER_MIN = 1;
+        RideRepository repo = new RideRepository();
         public double CalculateFair(int distance, int time)
         {
             double calculatefair = distance * FAIR_PER_KM + time * FAIR_PER_MIN;
@@ -35,6 +36,14 @@ namespace CabInvoiceGenerator
             }
             return new InvoiceSummary(rides.Length,result);
         }
-
+        public void MapUserId(string userId, Ride[] rides)
+        {
+            this.repo.AddRides(userId, rides);
+        }
+        public InvoiceSummary GetRideInvoiceSummary(string userId)
+        {
+            Ride[] result = this.repo.GetRides(userId);
+            return MultipleRideSummary(result);
+        }
     }
 }

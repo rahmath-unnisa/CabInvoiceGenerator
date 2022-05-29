@@ -33,5 +33,14 @@ namespace InvoiceTest
             InvoiceSummary result = invoice.MultipleRideSummary(rides);
             Assert.AreEqual(result.totalNumberOfRides, rides.Length);
         }
+        [Test]
+        public void GivenUserId_ShouldReturnInvoiceSummary()
+        {
+            InvoiceGenerator invoice = new InvoiceGenerator();
+            Ride[] rides = { new Ride(2, 3), new Ride(4, 5), new Ride(5, 6) };
+            invoice.MapUserId("123Manha", rides);
+            InvoiceSummary summary = invoice.GetRideInvoiceSummary("123Manha");
+            Assert.AreEqual(summary.totalNumberOfRides, 3);
+        }
     }
 }
