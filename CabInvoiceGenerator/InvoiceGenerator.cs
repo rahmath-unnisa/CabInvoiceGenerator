@@ -17,6 +17,15 @@ namespace CabInvoiceGenerator
             return Math.Max(calculatefair, MIN_FAIR);
 
         }
-       
+        public double MultipleRides(Ride[] rides)
+        {
+            double result = 0;
+            foreach (var data in rides)
+            {
+                result += CalculateFair((int)data.distance, data.time);
+            }
+            return result / rides.Length;
+        }
+
     }
 }

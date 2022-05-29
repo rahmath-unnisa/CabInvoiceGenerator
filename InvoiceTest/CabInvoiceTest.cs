@@ -15,5 +15,15 @@ namespace InvoiceTest
 
             Assert.AreEqual(130, value);
         }
+        [Test]
+
+        public void MultipleRides()
+        {
+            InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+            Ride[] rides = { new Ride(1,2), new Ride(3,4), new Ride(5, 6) };
+            double result = invoiceGenerator.MultipleRides(rides);
+            Assert.AreEqual(result, 34);
+
+        }
     }
 }
